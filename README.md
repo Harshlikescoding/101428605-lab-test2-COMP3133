@@ -6,7 +6,7 @@ This Angular application allows users to explore and search through SpaceX launc
 
 ## 🌐 Live Demo
 
-🔗 [View the Live App Here](https://101428605spacex.netlify.app)  
+🔗 [View the Live App Here](https://101428605spacex.vercel.app)  
 📦 [GitHub Repository](https://github.com/Harshlikescoding/101428605-lab-test2-COMP3133)
 
 ---
