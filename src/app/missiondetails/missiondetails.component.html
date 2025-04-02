@@ -1,0 +1,61 @@
+<div class="app-wrapper py-5 px-3">
+
+   <!-- SpaceX Header -->
+   <div class="text-center mb-5">
+     <h1 class="gradient-text display-4">🚀 SpaceX Launches</h1>
+   </div>
+ 
+   <!-- Mission Patch -->
+   <div class="text-center mb-5">
+     <div class="mission-image-frame mx-auto mb-3">
+       <img
+         [src]="mission.links?.mission_patch_small"
+         alt="Mission Patch"
+         class="mission-img-lg"
+       />
+     </div>
+     <h2 class="gradient-text display-5">{{ mission.mission_name }}</h2>
+   </div>
+ 
+   <!-- Mission Info -->
+   <div class="container-fluid text-section">
+     <div class="row justify-content-center">
+       <div class="col-md-8">
+ 
+         <h4 class="section-heading mb-3">🧾 Mission Information</h4>
+         <div class="info-block"><strong>Flight Number:</strong> {{ mission.flight_number }}</div>
+         <div class="info-block"><strong>Mission Name:</strong> {{ mission.mission_name }}</div>
+         <div class="info-block"><strong>Launch Year:</strong> {{ mission.launch_year }}</div>
+         <div class="info-block"><strong>Details:</strong> <p>{{ mission.details || 'No additional details available.' }}</p></div>
+ 
+         <h4 class="section-heading mt-5 mb-3">🚀 Rocket Information</h4>
+         <div class="info-block"><strong>Rocket Name:</strong> {{ mission.rocket?.rocket_name }}</div>
+         <div class="info-block"><strong>Rocket Type:</strong> {{ mission.rocket?.rocket_type }}</div>
+ 
+         <h4 class="section-heading mt-5 mb-3">🔗 Useful Links</h4>
+         <div class="info-block">
+           <div *ngIf="mission.links?.article_link">
+             <strong>Article:</strong>
+             <a [href]="mission.links.article_link" target="_blank">{{ mission.links.article_link }}</a>
+           </div>
+ 
+           <div *ngIf="mission.links?.wikipedia">
+             <strong>Wikipedia:</strong>
+             <a [href]="mission.links.wikipedia" target="_blank">{{ mission.links.wikipedia }}</a>
+           </div>
+ 
+           <div *ngIf="mission.links?.video_link">
+             <strong>Launch Video:</strong>
+             <a [href]="mission.links.video_link" target="_blank">{{ mission.links.video_link }}</a>
+           </div>
+         </div>
+ 
+         <div class="text-center mt-5">
+           <button class="btn btn-details px-4 py-2" (click)="backToMissionList()">🔙 Back</button>
+         </div>
+ 
+       </div>
+     </div>
+   </div>
+ </div>
+ 

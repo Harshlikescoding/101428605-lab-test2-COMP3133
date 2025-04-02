@@ -1,0 +1,77 @@
+<div class="app-wrapper py-5 px-3">
+
+    <!-- Title -->
+    <div class="text-center mb-4">
+      <h1 class="gradient-text display-4">🚀 SpaceX Launches</h1>
+    </div>
+  
+    <!-- Filters -->
+    <div class="container mb-5">
+      <div class="d-flex flex-wrap justify-content-center gap-3">
+        <input
+          type="text"
+          [(ngModel)]="searchText"
+          placeholder="🔍 Search mission..."
+          class="form-control soft-input"
+          style="max-width: 250px;"
+        />
+  
+        <select [(ngModel)]="launchStatus" class="form-select soft-input" style="max-width: 200px;">
+          <option value="">All Launches</option>
+          <option value="true">✅ Successful Launch</option>
+          <option value="false">❌ Failed Launch</option>
+        </select>
+  
+        <select [(ngModel)]="landingStatus" class="form-select soft-input" style="max-width: 200px;">
+          <option value="">All Landings</option>
+          <option value="true">✅ Successful Landing</option>
+          <option value="false">❌ Failed Landing</option>
+        </select>
+      </div>
+    </div>
+  
+    <!-- Card Grid -->
+    <div class="container px-3 px-md-5">
+      <div class="row g-4 justify-content-center">
+        <div class="col-md-6 col-lg-4" *ngFor="let mission of filteredMissions()">
+          <div class="card pastel-card p-4">
+  
+            <!-- Mission Patch + Info -->
+            <div class="d-flex align-items-center gap-3 mb-3">
+              <img
+                [src]="mission.links?.mission_patch_small"
+                alt="Patch"
+                class="mission-img"
+              />
+  
+              <div>
+                <h4 class="card-title mb-1">{{ mission.mission_name }}</h4>
+                <h6 class="card-subtitle">Year: {{ mission.launch_year }}</h6>
+              </div>
+            </div>
+  
+            <!-- Mission Details -->
+            <p class="card-text mt-2">
+              {{ mission.details ? mission.details : 'No details available.' }}
+            </p>
+  
+            <!-- Status + Button -->
+            <div class="d-flex align-items-center justify-content-between mt-3 flex-wrap gap-2">
+              <div class="d-flex align-items-center gap-2">
+                <span class="badge bg-success" *ngIf="mission.launch_success">Launch ✅</span>
+                <span class="badge bg-danger" *ngIf="mission.launch_success === false">Launch ❌</span>
+                <span class="badge bg-info" *ngIf="mission.rocket?.first_stage?.cores?.[0]?.land_success">Landing ✅</span>
+                <span class="badge bg-warning text-dark" *ngIf="mission.rocket?.first_stage?.cores?.[0]?.land_success === false">Landing ❌</span>
+              </div>
+  
+              <button class="btn btn-details" (click)="launchDetails(mission.flight_number)">
+                🔍 Details
+              </button>
+            </div>
+  
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
